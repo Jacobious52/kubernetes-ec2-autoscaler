@@ -67,7 +67,7 @@ def main(cluster_name, aws_regions, azure_resource_groups, azure_slow_scale_clas
     logger.setLevel(DEBUG_LOGGING_MAP.get(verbose, logging.CRITICAL))
 
     aws_regions_list = aws_regions.split(',') if aws_regions else []
-    if not (aws_secret_key and aws_access_key) and aws_regions_list:
+    if not aws_regions_list:
         logger.error("Missing AWS credentials. Please provide aws-access-key and aws-secret-key.")
         sys.exit(1)
 

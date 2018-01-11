@@ -112,6 +112,9 @@ class Cluster(object):
                 aws_access_key_id=aws_access_key,
                 aws_secret_access_key=aws_secret_key,
                 region_name=aws_regions[0])  # provide a default region
+        else:
+            # let boto do the setup. allows for other methods like kube2iam
+            self.session = boto3.session.Session(region_name=aws_regions[0])
         self.autoscaling_groups = autoscaling_groups.AutoScalingGroups(
             session=self.session, regions=aws_regions,
             cluster_name=cluster_name)
